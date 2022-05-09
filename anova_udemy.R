@@ -16,3 +16,19 @@ library(tidyverse)
 
 dente <- ToothGrowth
 dente$dose <- factor(dente$dose)
+
+# Análise da distribuição dos dados --------------------------------------------------------------------------------------------------------
+
+### Histogramas
+
+qplot(x = len, data = dente, bins = 10) 
+qplot(x = len, fill = dose, data = dente, binwidth = 3) 
+
+# ANOVA One Way ----------------------------------------------------------------------------------------------------------------------------
+
+a1 <- aov(len ~ dose, data = dente) # Modelo
+summary(a1) # Resultado
+
+TukeyHSD(a1) # Teste post hoc - Comparação entre grupos
+
+pairwise.t.test(dente$len, dente$dose) # Vários teste t pareados

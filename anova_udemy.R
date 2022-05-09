@@ -32,3 +32,21 @@ summary(a1) # Resultado
 TukeyHSD(a1) # Teste post hoc - Comparação entre grupos
 
 pairwise.t.test(dente$len, dente$dose) # Vários teste t pareados
+
+# ANOVA Two Way - Dois fatores -------------------------------------------------------------------------------------------------------------
+
+### Análise de dois grupos - Suplemento e dose
+
+ggplot(dente) +
+  geom_boxplot(aes(x = dose, y = len, fill = supp)) +
+  geom_jitter(aes(x = dose, y = len, group = supp)) +
+  theme_bw()
+
+a2 <- aov(len ~ dose + supp, data = dente) # Diferença entre grupos
+summary(a2)
+
+a3 <- aov(len ~ dose * supp, data = dente) # Diferença e interação entre grupos
+summary(a3)
+
+a4 <- aov(len ~ dose:supp, data = dente) # Somente interação entre grupos
+summary(a4)

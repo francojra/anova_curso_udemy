@@ -50,3 +50,12 @@ summary(a3)
 
 a4 <- aov(len ~ dose:supp, data = dente) # Somente interação entre grupos
 summary(a4)
+
+# ANOVA desbalanceada ----------------------------------------------------------------------------------------------------------------------
+
+### Quando os grupos não apresentam o mesmo número de repetições.
+
+library(car)
+
+ad <- aov(len ~ dose * supp, data = dente)
+Anova(ad, type = "III")
